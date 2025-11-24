@@ -19,10 +19,10 @@ public class Player : MonoBehaviour
         {
             m_Rigidbody.AddForce(new Vector2(-10, 0));
         }
-        else
-        {
-            m_Rigidbody.linearVelocity = new Vector2(m_Rigidbody.linearVelocityX, 0);
-        }
+        //else
+        //{
+        //    m_Rigidbody.AddForce(new Vector2(0, 0));
+        //}
 
         if (Input.GetAxis("Vertical") > 0)
         {
@@ -32,9 +32,17 @@ public class Player : MonoBehaviour
         {
             m_Rigidbody.AddForce(new Vector2(0, -10));
         }
-        else
-        {
-            m_Rigidbody.linearVelocity = new Vector2(m_Rigidbody.linearVelocityY, 0);
-        }
+        //else
+        //{
+        //    m_Rigidbody.AddForce(new Vector2(0, 0));
+        //}
+
+        m_Rigidbody.rotation += 5f;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        transform.position = Vector3.zero;
+        Debug.Log("We hebben iets geraakt");
     }
 }
