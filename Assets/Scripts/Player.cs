@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,9 +12,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] private int LifeCount;
 
+    TextMeshProUGUI lifeCounter;
+
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody2D>();
+        lifeCounter = GameObject.Find("lifeCounter").GetComponent<TextMeshProUGUI>();
+        UpdateLifeCounter();
     }
 
     private void Update()
@@ -53,7 +58,11 @@ public class Player : MonoBehaviour
             transform.position = Vector3.zero;
             LifeCount = 3;
         }
+        UpdateLifeCounter();
+    }
 
-        
+    private void UpdateLifeCounter()
+    {
+        lifeCounter.text = "Lives: " + LifeCount;
     }
 }
