@@ -8,9 +8,9 @@ public class Player : MonoBehaviour
     private Vector2 input;
 
     [SerializeField] private float speed;
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] public float rotationSpeed;
 
-    [SerializeField] private int LifeCount;
+    [SerializeField] public int LifeCount;
 
     TextMeshProUGUI lifeCounter;
 
@@ -61,7 +61,17 @@ public class Player : MonoBehaviour
         UpdateLifeCounter();
     }
 
-    private void UpdateLifeCounter()
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        HealingTile t = collision.gameObject.GetComponent<HealingTile>();
+        if (t != null)
+        {
+            LifeCount = 3;
+            UpdateLifeCounter();
+        }
+    }
+
+    public void UpdateLifeCounter()
     {
         lifeCounter.text = "Lives: " + LifeCount;
     }
