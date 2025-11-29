@@ -49,14 +49,13 @@ public class Player : MonoBehaviour
         Vector3 point = collision.contacts[0].point;
 
         transform.position = (transform.position - point) + transform.position;
-        
-        //transform.position -= new Vector3(input.x * 0.1f, input.y * 0.1f, 0);
 
         if (LifeCount < 1)
         {
             Debug.Log("Game Over");
             transform.position = Vector3.zero;
             LifeCount = 3;
+            rotationSpeed = 2f;
         }
         UpdateLifeCounter();
     }
